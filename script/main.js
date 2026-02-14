@@ -300,9 +300,14 @@ window.addEventListener("DOMContentLoaded", fetchData);
 document.addEventListener("DOMContentLoaded", () => {
   const music = document.getElementById("bg-music");
 
-  document.body.addEventListener("click", () => {
-    music.play().catch(() => {});
-  }, { once: true });
+  const startMusic = () => {
+    music.play().catch(err => console.log("Playback blocked:", err));
+    document.removeEventListener("click", startMusic);
+    document.removeEventListener("touchstart", startMusic);
+  };
+
+  document.addEventListener("click", startMusic);
+  document.addEventListener("touchstart", startMusic);
 });
 
 // Run fetch and animation in sequence
