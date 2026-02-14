@@ -297,11 +297,21 @@ const fetchData = () => {
 
 // Call the function when page loads
 window.addEventListener("DOMContentLoaded", fetchData);
-const music = document.getElementById("bg-music");
+document.addEventListener("DOMContentLoaded", () => {
+  const music = document.getElementById("bg-music");
 
-document.addEventListener("click", () => {
-    music.play();
-}, { once: true });
+  // Try autoplay immediately
+  music.play().catch(() => {
+    // If blocked, start after first interaction
+    const startMusic = () => {
+      music.play().catch(err => console.log("Playback blocked:", err));
+      document.removeEventListener("click", startMusic);
+      document.removeEventListener("touchstart", startMusic);
+    };
+    document.addEventListener("click", startMusic);
+    document.addEventListener("touchstart", startMusic);
+  });
+});
 
 // Run fetch and animation in sequence
 const resolveFetch = () => {
