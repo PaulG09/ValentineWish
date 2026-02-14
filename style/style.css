@@ -222,6 +222,27 @@ body {
   font-weight: lighter;
   font-size: 2rem;
   margin: 10px 0 0;
+  text-transform: uppercase; /* makes it bold visually */
+  background: linear-gradient(45deg, #ff007f, #ff66cc, #ffccff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shine 3s infinite linear, floatText 2s ease-in-out infinite;
+  text-shadow: 2px 2px 8px rgba(255, 0, 127, 0.5);
+  letter-spacing: 1px;
+}
+
+/* Gradient shine animation */
+@keyframes shine {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Subtle float effect */
+@keyframes floatText {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
 }
 
 .nine p {
