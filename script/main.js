@@ -300,8 +300,9 @@ window.addEventListener("DOMContentLoaded", fetchData);
 const music = document.getElementById("bg-music");
 
 document.addEventListener("click", () => {
-	    music.play();
+    music.play();
 }, { once: true });
+
 
 // Run fetch and animation in sequence
 const resolveFetch = () => {
