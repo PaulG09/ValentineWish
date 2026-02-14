@@ -297,12 +297,10 @@ const fetchData = () => {
 
 // Call the function when page loads
 window.addEventListener("DOMContentLoaded", fetchData);
-const music = document.getElementById("bg-music");
-
-document.addEventListener("click", () => {
-    music.play();
+window.addEventListener("click", () => {
+  const music = document.getElementById("bg-music");
+  music.play().catch(() => {});
 }, { once: true });
-
 
 // Run fetch and animation in sequence
 const resolveFetch = () => {
