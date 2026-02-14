@@ -293,6 +293,11 @@ const fetchData = () => {
       });
     });
 };
+const music = document.getElementById("bg-music");
+
+document.addEventListener("click", () => {
+	    music.play();
+}, { once: true });
 
 // Run fetch and animation in sequence
 const resolveFetch = () => {
