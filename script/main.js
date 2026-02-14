@@ -278,21 +278,25 @@ const animationTimeline = () => {
 // Import the data to customize and insert them into page
 const fetchData = () => {
   fetch("customize.json")
-    .then((data) => data.json())
+    .then((response) => response.json())
     .then((data) => {
-      Object.keys(data).map((customData) => {
-        if (data[customData] !== "") {
-          if (customData === "imagePath") {
-            document
-              .getElementById(customData)
-              .setAttribute("src", data[customData]);
+      Object.keys(data).forEach((key) => {
+        if (data[key] !== "") {
+          if (key === "imagePath") {
+            const img = document.getElementById(key);
+            if (img) img.setAttribute("src", data[key]);
           } else {
-            document.getElementById(customData).innerText = data[customData];
+            const el = document.getElementById(key);
+            if (el) el.innerText = data[key];
           }
         }
       });
-    });
+    })
+    .catch((err) => console.error("Failed to load customize.json", err));
 };
+
+// Call the function when page loads
+window.addEventListener("DOMContentLoaded", fetchData);
 const music = document.getElementById("bg-music");
 
 document.addEventListener("click", () => {
